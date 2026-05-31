@@ -3,9 +3,24 @@ import java.util.ArrayList;
 public class Mago {
 	private String nombre;
 	private ArrayList<Hechizo> hechizosMago;
+	
 	public Mago(String nombre, ArrayList<Hechizo> hechizosMago) {
 		this.nombre = nombre;
 		this.hechizosMago = hechizosMago;
 	}
+	
+	public int calcularPuntuacion() {
+		int puntuacion = 0;
+		for (Hechizo hechizo : hechizosMago) {
+			puntuacion += hechizo.calcularPuntuacion();
+		}
+		
+		return puntuacion;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	
 	
 }

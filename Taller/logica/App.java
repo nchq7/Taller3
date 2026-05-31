@@ -14,6 +14,7 @@ public class App {
 	public static void menuAnalista() {
 		Scanner scanner = new Scanner(System.in);
 		String opcion = "";
+		
 		do {
 			System.out.println("=== MENÚ DE ANALISIS ===");
 			System.out.println("\n1. Top 10 Mejores Hechizos\r\n"
@@ -33,26 +34,26 @@ public class App {
 				sys.top10MejoresHechizos();
 				break;
 			case "2":
-				
+				sys.top3Magos();
 				break;
 			case "3":
-				
+				sys.mostrarHechizos();
 				break;
 			case "4":
-				
+				sys.mostrarMagos();
 				break;
 			case "5":
-				
+				sys.mostrarHechizosYpuntuacion();
 				break;
 			case "6":
-				
+				sys.mostrarMagosYpuntiacion();
 				break;
 			default:
 				System.err.println("Opción invalida. Intentalo denuevo.");
 				break;
 			}
+			System.out.println("");
 		}while(!opcion.equals("0"));
-
 	}
 	
 	public static void mainMenu() {
@@ -88,6 +89,49 @@ public class App {
 	}
 	
 	private static void menuAdmin() {
+		Scanner scanner = new Scanner(System.in);
+		String opcion = "";
+		
+		do {
+			System.out.println("=== MENÚ DE ADMINISTRADOR ===\n");
+			System.out.println("1. Agregar Mago\r\n"
+					+ "2. Modificar Mago\r\n"
+					+ "3. Eliminar Mago\r\n"
+					+ "4. Agregar Hechizo\r\n"
+					+ "5. Modificar Hechizo\r\n"
+					+ "6. Eliminar Hechizo\r\n"
+					+ "0. Salir");
+			System.out.print("> ");
+			opcion = scanner.nextLine();
+			switch (opcion) {
+			case "0":
+				System.out.println("Saliendo del menú de Administrador. . .");
+				break;
+			case "1":
+				
+				break;
+			case "2":
+				
+				break;
+			case "3":
+				
+				break;
+			case "4":
+				
+				break;
+			case "5":
+				
+				break;
+			case "6":
+				
+				break;
+			default:
+				System.err.println("Opcion invalida. Intentalo denuevo.");
+				break;
+			}
+			
+			System.out.println("");
+		}while(!opcion.equals("0"));
 		
 		
 	}
