@@ -6,4 +6,6 @@ public interface Sistema {
 	void añadirHechizo(Hechizo hechizo);
 	Hechizo buscarHechizo(String hechizo);
 	void añadirMago(ArrayList<Hechizo> hechizo, String nombre);
+	void top10MejoresHechizos();
+
 }

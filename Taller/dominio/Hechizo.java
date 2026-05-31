@@ -1,6 +1,6 @@
 package dominio;
 
-public class Hechizo {
+public abstract class Hechizo {
 	private String nombre;
 	private String tipo;
 	private int daño;
@@ -10,7 +10,9 @@ public class Hechizo {
 		this.tipo = tipo;
 		this.daño = daño;
 	}
-
+	
+	public abstract int calcularPuntuacion();
+	
 	public String getNombre() {
 		return nombre;
 	}

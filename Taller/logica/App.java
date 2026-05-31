@@ -11,17 +11,86 @@ public class App {
 		cargarMagos();
 		mainMenu();
 	}
+	public static void menuAnalista() {
+		Scanner scanner = new Scanner(System.in);
+		String opcion = "";
+		do {
+			System.out.println("=== MENÚ DE ANALISIS ===");
+			System.out.println("\n1. Top 10 Mejores Hechizos\r\n"
+					+ "2. Top 3 Mejores Magos\r\n"
+					+ "3. Mostrar todos los Hechizos\r\n"
+					+ "4. Mostrar todos los magos\r\n"
+					+ "5. Mostrar todos los Hechizos junto a su puntuacion\r\n"
+					+ "6. Mostrar todos los magos junto a su puntuacion\r\n"
+					+ "0. Salir");
+			System.out.print("> ");
+			opcion = scanner.nextLine();
+			switch (opcion) {
+			case "0":
+				System.out.println("Saliendo del menú de Analisis. . .");
+				break;
+			case "1":
+				sys.top10MejoresHechizos();
+				break;
+			case "2":
+				
+				break;
+			case "3":
+				
+				break;
+			case "4":
+				
+				break;
+			case "5":
+				
+				break;
+			case "6":
+				
+				break;
+			default:
+				System.err.println("Opción invalida. Intentalo denuevo.");
+				break;
+			}
+		}while(!opcion.equals("0"));
+
+	}
 	
 	public static void mainMenu() {
-		System.out.println("Bienvenido!");
-		System.out.println("Que deseas hacer?");
-		System.out.println("1) Acceder a Panel de Administrador");
-		System.out.println("2) Acceder a Panel de Analista");
-		System.out.print("> ");
 		Scanner scanner = new Scanner(System.in);
+		String opcion = "";
+		do {
+			System.out.println("Bienvenido!");
+			System.out.println("Que deseas hacer?");
+			System.out.println("1) Acceder a Panel de Administrador");
+			System.out.println("2) Acceder a Panel de Analista");
+			System.out.println("0) Salir");
+			System.out.print("> ");
+			opcion = scanner.nextLine();
+			switch (opcion) {
+			case "1":
+				menuAdmin();
+				break;
+			case "2":
+				menuAnalista();
+				break;
+			
+			case "0":
+				System.out.println("Hasta luego!");
+				break;
+				
+			default:
+				System.err.println("Opción invalida. Intentalo denuevo.");
+				break;
+			}
+			
+		}while(!opcion.equals("0"));
 		
 	}
 	
+	private static void menuAdmin() {
+		
+		
+	}
 	public static void cargarHechizos() throws FileNotFoundException {
 		File archivo = new File("Hechizos.txt");
 		Scanner lector = new Scanner(archivo);

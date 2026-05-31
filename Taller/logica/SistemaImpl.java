@@ -26,5 +26,11 @@ public class SistemaImpl implements Sistema {
 	public void añadirMago(ArrayList<Hechizo> hechizos, String nombre) {
 		magos.add(new Mago(nombre,hechizos));
 	}
+
+	@Override
+	public void top10MejoresHechizos() {
+		
+		
+	}
 	
 }
