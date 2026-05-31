@@ -8,6 +8,17 @@ public class App {
 	public static Sistema sys = new SistemaImpl();
 	public static void main(String[] args) throws FileNotFoundException {
 		cargarHechizos();
+		cargarMagos();
+		mainMenu();
+	}
+	
+	public static void mainMenu() {
+		System.out.println("Bienvenido!");
+		System.out.println("Que deseas hacer?");
+		System.out.println("1) Acceder a Panel de Administrador");
+		System.out.println("2) Acceder a Panel de Analista");
+		System.out.print("> ");
+		Scanner scanner = new Scanner(System.in);
 		
 	}
 	
@@ -71,9 +82,9 @@ public class App {
 			ArrayList<Hechizo> hechizosMago = new ArrayList<>();
 			
 			for (String hechizo : hechizos) {
-				
+				hechizosMago.add(sys.buscarHechizo(hechizo));
 			}
-			
+			sys.añadirMago(hechizosMago, nombreMago);
 		}
 		
 	}
