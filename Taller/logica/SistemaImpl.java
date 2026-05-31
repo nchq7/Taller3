@@ -10,5 +10,10 @@ public class SistemaImpl implements Sistema {
 	public void añadirHechizo(Hechizo hechizo) {
 		hechizos.add(hechizo);
 	}
+
+	@Override
+	public void buscarHechizo(String hechizo) {
+		
+	}
 	
 }

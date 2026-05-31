@@ -1,4 +1,5 @@
 package logica;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.File;
@@ -55,4 +56,26 @@ public class App {
 		}
 		
 	}
+	
+	public static void cargarMagos() throws FileNotFoundException{
+		File archivo = new File("Magos.txt");
+		Scanner lector = new Scanner(archivo);
+		
+		while (lector.hasNextLine()) {
+			String linea = lector.nextLine();
+			String[] partes = linea.split(";");
+			String nombreMago = partes[0];
+			
+			
+			String[] hechizos = partes[1].split("\\|"); 
+			ArrayList<Hechizo> hechizosMago = new ArrayList<>();
+			
+			for (String hechizo : hechizos) {
+				
+			}
+			
+		}
+		
+	}
+	
 }
