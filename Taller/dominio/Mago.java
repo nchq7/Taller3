@@ -22,5 +22,16 @@ public class Mago {
 		return nombre;
 	}
 	
+	public String lineaTxt() {
+		String linea = this.nombre + ";";
+		String lineaHechizos = "";
+		for(int i = 0; i < hechizosMago.size();i++) {
+			lineaHechizos += hechizosMago.get(i).getNombre();
+			if (i != hechizosMago.size()-1) {
+				lineaHechizos += "|";
+			}
+		}
+		return linea + lineaHechizos;
+	}
 	
 }

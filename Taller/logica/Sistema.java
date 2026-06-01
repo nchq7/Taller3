@@ -14,6 +14,7 @@ public interface Sistema {
 	void mostrarMagos();
 	void mostrarHechizosYpuntuacion();
 	void mostrarMagosYpuntiacion();
-
+	ArrayList<Hechizo> getListaHechizos();
+	ArrayList<Mago> getListaMagos();
 
 }

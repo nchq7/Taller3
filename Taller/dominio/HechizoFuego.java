@@ -15,4 +15,8 @@ public class HechizoFuego extends Hechizo {
 	public int getPuntuacion() {
 		return puntuacion;
 	}
+	@Override
+	public String lineaTxt() {
+		return getNombre() + ";" + getTipo() + ";" + getDaño() + ";" + this.duracionQuemadura;
+	}
 }

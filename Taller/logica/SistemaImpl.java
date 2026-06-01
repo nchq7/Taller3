@@ -110,6 +110,16 @@ public class SistemaImpl implements Sistema {
 			System.out.println(i+1 + ") " + magos.get(i).getNombre() + " | Puntuacion: " + magos.get(i).calcularPuntuacion());
 		}
 	}
+
+	@Override
+	public ArrayList<Hechizo> getListaHechizos() {
+		return hechizos;
+	}
+
+	@Override
+	public ArrayList<Mago> getListaMagos() {
+		return magos;
+	}
 	
 	
 }

@@ -13,6 +13,7 @@ public abstract class Hechizo {
 	
 	public abstract int calcularPuntuacion();
 	public abstract int getPuntuacion();
+	public abstract String lineaTxt();
 	
 	public String getNombre() {
 		return nombre;

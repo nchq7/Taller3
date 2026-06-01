@@ -9,7 +9,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 public class App {
 	public static Sistema sys = new SistemaImpl();
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		cargarHechizos();
 		cargarMagos();
 		mainMenu();
@@ -59,7 +59,7 @@ public class App {
 		}while(!opcion.equals("0"));
 	}
 	
-	public static void mainMenu() {
+	public static void mainMenu() throws IOException {
 		Scanner scanner = new Scanner(System.in);
 		String opcion = "";
 		do {
@@ -80,6 +80,8 @@ public class App {
 			
 			case "0":
 				System.out.println("Hasta luego!");
+				guardarTxtHechizos();
+				guardarTxtMagos();
 				break;
 				
 			default:
@@ -90,6 +92,27 @@ public class App {
 		}while(!opcion.equals("0"));
 		
 	}
+	
+	private static void guardarTxtMagos() throws IOException {
+		BufferedWriter bw = new BufferedWriter(new FileWriter("Magos.txt"));
+		for(Mago mago : sys.getListaMagos()) {
+			String linea = mago.lineaTxt();
+			
+			bw.write(linea);
+			bw.newLine();
+		}
+	}
+	
+	private static void guardarTxtHechizos() throws IOException {
+		BufferedWriter bw = new BufferedWriter(new FileWriter("Hechizos.txt"));
+		for (Hechizo hechizo : sys.getListaHechizos()) {
+            String linea = hechizo.lineaTxt(); 
+            
+            bw.write(linea);
+            bw.newLine();
+        }
+	}
+	
 	
 	private static void menuAdmin() {
 		Scanner scanner = new Scanner(System.in);
@@ -111,7 +134,7 @@ public class App {
 				System.out.println("Saliendo del menú de Administrador. . .");
 				break;
 			case "1":
-				
+				agregarMago();
 				break;
 			case "2":
 				
@@ -136,6 +159,25 @@ public class App {
 			System.out.println("");
 		}while(!opcion.equals("0"));
 		
+		
+	}
+	private static void agregarMago() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("=== AGREGAR NUEVO MAGO ===");
+		System.out.println("Ingrese nombre del nuevo mago: ");
+		String nombre = scanner.nextLine();
+		/*
+		 * ACÁ SE ME OCURRE AGREGAR EL NOMBRE Y LA LISTA DE HECHIZOS AL ARRAYLIST DEL SISTEMA
+		 * Y PEDIRLE A LA PERSONA QUE INGRESE LA CANTIDAD DE HECHIZOS QUE QUIERE TENER SU MAGO
+		 * Y CUANDO LE PIDAMOS ESO, MOSTRARLE LA CANTIDAD DE HECHIZOS QUE HAY EJ(90)
+		 * TIPO: ELIJA CANT DE HECHIZOS (MAX 90)
+		 * Y HACER UN CONTROL DE ERROR QUE NO PUEDA ELEJIR NUMEROS NEGATIVOS NI 0 Y TAMPOCO MAYORES AL SIZE DEL ARRAYLIST
+		 * DESPUES HACER UN FOR INT I (EL DE TODA LA VIDA) QUE TE VAYA PIDIENDO UNO POR UNO LOS 
+		 * HECHIZOS QUE QUIERES, PERO LO HAREMOS UTILIZANDO EL ARRAYLIST DE HECHIZOS, VOY A IMPRIMIR
+		 * LA LISTA DENTRO DEL FOR (LA DE MOSTRARHECHIZOS() ) Y PEDIR QUE INGRESE UN NÚMERO
+		 * EJ: PONE QUE QUIERE EL HECHIZO N1 DE LA LISTA, SE LO AGREGAMOS A LA LISTA NUEVA
+		 * DE HECHIZOS Y DESPUÉS DE QUE TERMINE LO AGREGAMOS A LA LISTA DEL SISTEMA Y GUARDAMOS EL ARCHIVO. LISTO
+		 */
 		
 	}
 	public static void cargarHechizos() throws FileNotFoundException {
@@ -178,8 +220,6 @@ public class App {
 				break;
 			}
 
-			
-			
 		}
 		
 	}
