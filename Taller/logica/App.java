@@ -4,6 +4,9 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.File;
 import dominio.*;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
 public class App {
 	public static Sistema sys = new SistemaImpl();
 	public static void main(String[] args) throws FileNotFoundException {
