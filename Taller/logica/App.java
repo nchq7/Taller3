@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 public class App {
+	// Ignacio Valdivia 22.179.357-9 ICCI
 	public static Sistema sys = new SistemaImpl();
 	public static void main(String[] args) throws IOException {
 		cargarHechizos();
@@ -101,6 +102,7 @@ public class App {
 			bw.write(linea);
 			bw.newLine();
 		}
+		bw.close();
 	}
 	
 	private static void guardarTxtHechizos() throws IOException {
@@ -111,10 +113,11 @@ public class App {
             bw.write(linea);
             bw.newLine();
         }
+		bw.close();
 	}
 	
 	
-	private static void menuAdmin() {
+	private static void menuAdmin() throws IOException {
 		Scanner scanner = new Scanner(System.in);
 		String opcion = "";
 		
@@ -135,9 +138,10 @@ public class App {
 				break;
 			case "1":
 				agregarMago();
+				guardarTxtMagos();
 				break;
 			case "2":
-				
+				modificarMago();
 				break;
 			case "3":
 				
@@ -161,25 +165,108 @@ public class App {
 		
 		
 	}
+	private static void modificarMago() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("=== MODIFICAR MAGO ===");
+		int indice = 0;
+		do {
+			sys.mostrarMagos();
+			System.out.println("Elija su mago a modificar: ");
+			System.out.print("> ");
+			if(scanner.hasNextInt()) {
+				
+				indice = scanner.nextInt();
+				if(indice <= 0 || indice > sys.getListaMagos().size()) {
+					System.err.println("Error. Elija un número válido.");
+				}
+				
+			}else {
+				System.err.println("Error. Elija un NÚMERO.");
+				scanner.next();
+				indice = -1;
+			}
+			
+		}while(indice <= 0 || indice > sys.getListaMagos().size());
+		scanner.nextLine();
+		String opcion = "";
+		do {
+			System.out.println("Que deseas hacer?");
+			System.out.println("1. Modificar nombre de mago\n2. Modificar hechizo de mago\n0. Salir");
+			System.out.print("> ");
+			opcion = scanner.nextLine();
+			switch (opcion) {
+			case "1":
+				
+				break;
+			case "2":
+				
+				break;
+			case "0":
+				System.out.println("Hasta luego crack");
+				break;
+			default:
+				System.err.println("Ingresa una opción válida.");
+				break;
+			}
+		}while(!opcion.equals("0"));
+	}
 	private static void agregarMago() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("=== AGREGAR NUEVO MAGO ===");
 		System.out.println("Ingrese nombre del nuevo mago: ");
+		System.out.print("> ");
 		String nombre = scanner.nextLine();
-		/*
-		 * ACÁ SE ME OCURRE AGREGAR EL NOMBRE Y LA LISTA DE HECHIZOS AL ARRAYLIST DEL SISTEMA
-		 * Y PEDIRLE A LA PERSONA QUE INGRESE LA CANTIDAD DE HECHIZOS QUE QUIERE TENER SU MAGO
-		 * Y CUANDO LE PIDAMOS ESO, MOSTRARLE LA CANTIDAD DE HECHIZOS QUE HAY EJ(90)
-		 * TIPO: ELIJA CANT DE HECHIZOS (MAX 90)
-		 * Y HACER UN CONTROL DE ERROR QUE NO PUEDA ELEJIR NUMEROS NEGATIVOS NI 0 Y TAMPOCO MAYORES AL SIZE DEL ARRAYLIST
-		 * DESPUES HACER UN FOR INT I (EL DE TODA LA VIDA) QUE TE VAYA PIDIENDO UNO POR UNO LOS 
-		 * HECHIZOS QUE QUIERES, PERO LO HAREMOS UTILIZANDO EL ARRAYLIST DE HECHIZOS, VOY A IMPRIMIR
-		 * LA LISTA DENTRO DEL FOR (LA DE MOSTRARHECHIZOS() ) Y PEDIR QUE INGRESE UN NÚMERO
-		 * EJ: PONE QUE QUIERE EL HECHIZO N1 DE LA LISTA, SE LO AGREGAMOS A LA LISTA NUEVA
-		 * DE HECHIZOS Y DESPUÉS DE QUE TERMINE LO AGREGAMOS A LA LISTA DEL SISTEMA Y GUARDAMOS EL ARCHIVO. LISTO
-		 */
 		
+		int cantidadHechizos = 0;
+		do {
+			System.out.println("Elija cantidad de hechizos para su mago (MAX: " + sys.getListaHechizos().size() + ")");
+			System.out.print("> ");
+			if(scanner.hasNextInt()) {
+				
+				cantidadHechizos = scanner.nextInt();
+				if(cantidadHechizos <= 0 || cantidadHechizos > sys.getListaHechizos().size()) {
+					System.err.println("Error. Elija un número válido.");
+				}
+				
+			}else {
+				System.err.println("Error. Elija un NÚMERO.");
+				scanner.next();
+				cantidadHechizos = -1;
+			}
+			
+		}while(cantidadHechizos <= 0 || cantidadHechizos > sys.getListaHechizos().size());
+		ArrayList<Hechizo> hechizosTemp = new ArrayList<>();
+		for(int i = 0; i < cantidadHechizos;i++) {
+			int indice = 0;
+			sys.mostrarHechizos();
+			
+			do {
+				System.out.println("Elija el número del hechizo que quiere para su mago");
+				System.out.print("> ");
+				if(scanner.hasNextInt()) {
+					
+					indice = scanner.nextInt();
+					if(indice <= 0 || indice > sys.getListaHechizos().size()) {
+						System.err.println("Error. Elija un número válido.");
+					}
+					
+				}else {
+					System.err.println("Error. Elija un NÚMERO.");
+					scanner.next();
+					indice = -1;
+				}
+				
+			}while(indice <= 0 || indice > sys.getListaHechizos().size());
+			
+			hechizosTemp.add(sys.getListaHechizos().get(indice-1));
+			System.out.println("HECHIZO AGREGADO CON EXITO. \n");
+		}
+		scanner.nextLine();
+		System.out.println("Carga de hechizos para el mago " + nombre + " finalizado.");
+		System.out.println("Mago agregado exitosamente!");
+		sys.añadirMago(hechizosTemp, nombre);
 	}
+	
 	public static void cargarHechizos() throws FileNotFoundException {
 		File archivo = new File("Hechizos.txt");
 		Scanner lector = new Scanner(archivo);
