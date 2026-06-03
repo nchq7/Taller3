@@ -120,6 +120,14 @@ public class SistemaImpl implements Sistema {
 	public ArrayList<Mago> getListaMagos() {
 		return magos;
 	}
-	
+
+	@Override
+	public void modificarNombreMago(String nombre, int indice) {
+		magos.get(indice).setNombre(nombre);
+	}
+	@Override
+	public void eliminarMago(int indice) {
+	    this.magos.remove(indice);
+	}
 	
 }

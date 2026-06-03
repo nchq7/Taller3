@@ -16,5 +16,6 @@ public interface Sistema {
 	void mostrarMagosYpuntiacion();
 	ArrayList<Hechizo> getListaHechizos();
 	ArrayList<Mago> getListaMagos();
-
+	void modificarNombreMago(String nombre, int indice);
+	void eliminarMago(int indice);
 }

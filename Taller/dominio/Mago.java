@@ -22,6 +22,14 @@ public class Mago {
 		return nombre;
 	}
 	
+	public ArrayList<Hechizo> getHechizosMago() {
+		return hechizosMago;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public String lineaTxt() {
 		String linea = this.nombre + ";";
 		String lineaHechizos = "";

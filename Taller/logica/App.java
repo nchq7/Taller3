@@ -142,9 +142,11 @@ public class App {
 				break;
 			case "2":
 				modificarMago();
+				guardarTxtMagos();
 				break;
 			case "3":
-				
+				eliminarMago();
+				guardarTxtMagos();
 				break;
 			case "4":
 				
@@ -165,10 +167,41 @@ public class App {
 		
 		
 	}
+	private static void eliminarMago() {
+		Scanner scanner = new Scanner(System.in);
+	    System.out.println("=== ELIMINAR MAGO ===");
+	    int indice = 0;
+	    
+	    do {
+	        sys.mostrarMagos();
+	        System.out.println("Elija el número del mago que desea eliminar: ");
+	        System.out.print("> ");
+	        if(scanner.hasNextInt()) {
+	            indice = scanner.nextInt();
+	            if(indice <= 0 || indice > sys.getListaMagos().size()) {
+	                System.err.println("Error. Elija un número válido.");
+	            }
+	        } else {
+	            System.err.println("Error. Elija un NÚMERO.");
+	            scanner.next();
+	            indice = -1;
+	        }
+	    } while(indice <= 0 || indice > sys.getListaMagos().size());
+	    
+	    scanner.nextLine(); 
+	    
+	    String nombreMagoBorrado = sys.getListaMagos().get(indice - 1).getNombre();
+	    
+	    sys.eliminarMago(indice - 1);
+	    
+	    System.out.println("¡El mago " + nombreMagoBorrado + " ha sido eliminado con éxito!");
+		
+	}
 	private static void modificarMago() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("=== MODIFICAR MAGO ===");
 		int indice = 0;
+		
 		do {
 			sys.mostrarMagos();
 			System.out.println("Elija su mago a modificar: ");
@@ -196,10 +229,65 @@ public class App {
 			opcion = scanner.nextLine();
 			switch (opcion) {
 			case "1":
-				
+				System.out.println("Ingrese el nuevo nombre");
+				System.out.print("> ");
+				String nombre = scanner.nextLine();
+				sys.modificarNombreMago(nombre, indice-1);
+				System.out.println("Nombre modificado con exito!");
 				break;
 			case "2":
 				
+				Mago magoSeleccionado = sys.getListaMagos().get(indice - 1);
+				
+				System.out.println("\n--- HECHIZOS ACTUALES DE " + magoSeleccionado.getNombre() + " ---");
+				
+				for (int i = 0; i < magoSeleccionado.getHechizosMago().size(); i++) {
+					System.out.println((i + 1) + ") " + magoSeleccionado.getHechizosMago().get(i).getNombre());
+				}
+				
+				int hechizoAQuitar = 0;
+				do {
+					System.out.println("Elija el número del hechizo que desea REEMPLAZAR:");
+					System.out.print("> ");
+					if (scanner.hasNextInt()) {
+						hechizoAQuitar = scanner.nextInt();
+						if (hechizoAQuitar <= 0 || hechizoAQuitar > magoSeleccionado.getHechizosMago().size()) {
+							System.err.println("Error. Elija un número válido de la lista.");
+						}
+					} else {
+						System.err.println("Error. Ingrese un número.");
+						scanner.next();
+						hechizoAQuitar = -1;
+					}
+				} while (hechizoAQuitar <= 0 || hechizoAQuitar > magoSeleccionado.getHechizosMago().size());
+				
+				
+				System.out.println("\n--- LISTA GLOBAL DE HECHIZOS DISPONIBLES ---");
+				sys.mostrarHechizos(); 
+				
+				
+				int nuevoHechizoIndice = 0;
+				do {
+					System.out.println("Elija el número del NUEVO hechizo que aprenderá el mago:");
+					System.out.print("> ");
+					if (scanner.hasNextInt()) {
+						nuevoHechizoIndice = scanner.nextInt();
+						if (nuevoHechizoIndice <= 0 || nuevoHechizoIndice > sys.getListaHechizos().size()) {
+							System.err.println("Error. Elija un número válido.");
+						}
+					} else {
+						System.err.println("Error. Ingrese un número.");
+						scanner.next();
+						nuevoHechizoIndice = -1;
+					}
+				} while (nuevoHechizoIndice <= 0 || nuevoHechizoIndice > sys.getListaHechizos().size());
+				
+				scanner.nextLine(); 
+				
+				Hechizo hechizoNuevo = sys.getListaHechizos().get(nuevoHechizoIndice - 1);
+				magoSeleccionado.getHechizosMago().set(hechizoAQuitar - 1, hechizoNuevo);
+				
+				System.out.println("¡Hechizo modificado con éxito!");
 				break;
 			case "0":
 				System.out.println("Hasta luego crack");
@@ -210,6 +298,7 @@ public class App {
 			}
 		}while(!opcion.equals("0"));
 	}
+	
 	private static void agregarMago() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("=== AGREGAR NUEVO MAGO ===");

@@ -12,7 +12,7 @@ Danini;Fuego Sagrado|Pedrada|Envite Igneo|Hierba Lazo|Surf
 Mul;Gigadrenado|Rayo Burbuja|Danza Lluvia|Pistola Agua
 Maxi;Explosión Ígnea|Envite Igneo|Agua Lodosa
 Pruno;Sofoco|Disparo Lodo|Pirotecnia|Vórtice Ígneo
-Churrasquita;Origen Pulso|Infierno|Silvato|Hoja Mágica|Colmillo Igneo
+Churrasquita;Bucle Arena|Infierno|Silvato|Hoja Mágica|Colmillo Igneo
 Branco;Arraigo|Silvato|Danza Lluvia
 Papulini;Fuego Sagrado|Absorber|Infierno
 asd;Bucle Arena
