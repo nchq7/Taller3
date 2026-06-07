@@ -7,8 +7,8 @@ Ignacio Valdivia Rodriguez 22.179.357-9 @nchq7
 
 Estructura del proyecto (paquetes y clases principales):
 Se divide en dos paquetes:
-Dominio: Aqui van las clases base como lo son Hechizo.java y Mago.java y sus subclases (HechizoFuego.java, HechizoAgua.java, HechizoPlanta.java y HechizoTierra.java)
-Logica: Aqui va todo el sistema y todo lo "funcional". App.java, Sistema.java (Interfaz) y SistemaImpl.java
+1.Dominio: Aqui van las clases base como lo son Hechizo.java y Mago.java y sus subclases (HechizoFuego.java, HechizoAgua.java, HechizoPlanta.java y HechizoTierra.java)
+2.Logica: Aqui va todo el sistema y todo lo "funcional". App.java, Sistema.java (Interfaz) y SistemaImpl.java
 
 Instrucciones de ejecución:
 1. Clonar el repositorio.
