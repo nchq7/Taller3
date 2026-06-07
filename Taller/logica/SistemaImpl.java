@@ -125,9 +125,15 @@ public class SistemaImpl implements Sistema {
 	public void modificarNombreMago(String nombre, int indice) {
 		magos.get(indice).setNombre(nombre);
 	}
+	
 	@Override
 	public void eliminarMago(int indice) {
 	    this.magos.remove(indice);
+	}
+
+	@Override
+	public void eliminarHechizo(int indice) {
+		this.hechizos.remove(indice);
 	}
 	
 }

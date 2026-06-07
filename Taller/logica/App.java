@@ -149,13 +149,16 @@ public class App {
 				guardarTxtMagos();
 				break;
 			case "4":
-				
+				agregarHechizo();
+				guardarTxtHechizos();
 				break;
 			case "5":
-				
+				modificarHechizo();
+				guardarTxtHechizos();
 				break;
 			case "6":
-				
+				eliminarHechizo();
+				guardarTxtHechizos();
 				break;
 			default:
 				System.err.println("Opcion invalida. Intentalo denuevo.");
@@ -167,6 +170,259 @@ public class App {
 		
 		
 	}
+	private static void eliminarHechizo() {
+		Scanner scanner = new Scanner(System.in);
+	    System.out.println("=== ELIMINAR HECHIZO ===");
+	    int indice = 0;
+	    
+	    do {
+	        sys.mostrarHechizos();
+	        System.out.println("Elija el número del hechizo que desea eliminar: ");
+	        System.out.print("> ");
+	        if(scanner.hasNextInt()) {
+	            indice = scanner.nextInt();
+	            if(indice <= 0 || indice > sys.getListaHechizos().size()) {
+	                System.err.println("Error. Elija un número válido.");
+	            }
+	        } else {
+	            System.err.println("Error. Elija un NÚMERO.");
+	            scanner.next();
+	            indice = -1;
+	        }
+	    } while(indice <= 0 || indice > sys.getListaHechizos().size());
+	    
+	    scanner.nextLine(); 
+	    
+	    String nombreHechizoBorrado = sys.getListaHechizos().get(indice - 1).getNombre();
+	    
+	    sys.eliminarHechizo(indice - 1);
+	    
+	    System.out.println("¡El hechizo '" + nombreHechizoBorrado + "' ha sido eliminado con éxito!");
+	}
+		
+	private static void modificarHechizo() {
+		Scanner scanner = new Scanner(System.in);
+	    System.out.println("=== MODIFICAR HECHIZO ===");
+	    int indice = 0;
+	    
+	    do {
+	        sys.mostrarHechizos();
+	        System.out.println("Elija el número del hechizo que desea modificar: ");
+	        System.out.print("> ");
+	        if(scanner.hasNextInt()) {
+	            indice = scanner.nextInt();
+	            if(indice <= 0 || indice > sys.getListaHechizos().size()) {
+	                System.err.println("Error. Elija un número válido.");
+	            }
+	        } else {
+	            System.err.println("Error. Elija un NÚMERO.");
+	            scanner.next();
+	            indice = -1;
+	        }
+	    } while(indice <= 0 || indice > sys.getListaHechizos().size());
+	    
+	    scanner.nextLine(); 
+	    
+	    Hechizo hechizoActual = sys.getListaHechizos().get(indice - 1);
+	    
+	    String opcion = "";
+	    do {
+	        System.out.println("\nHechizo seleccionado: " + hechizoActual.getNombre() + " (tipo " + hechizoActual.getTipo() + ")");
+	        System.out.println("¿Qué deseas hacer?");
+	        System.out.println("1. Modificar Nombre\n2. Modificar Daño Base\n3. Modificar Tipo y Atributos Especiales\n0. Salir");
+	        System.out.print("> ");
+	        opcion = scanner.nextLine();
+	        
+	        switch (opcion) {
+	            case "1":
+	                System.out.println("Ingrese el nuevo nombre:");
+	                System.out.print("> ");
+	                String nuevoNombre = scanner.nextLine();
+	                hechizoActual.setNombre(nuevoNombre);
+	                System.out.println("¡Nombre modificado con éxito!");
+	                break;
+	                
+	            case "2":
+	                int nuevoDaño = -1;
+	                do {
+	                    System.out.println("Ingrese el nuevo daño base:");
+	                    System.out.print("> ");
+	                    if (scanner.hasNextInt()) {
+	                        nuevoDaño = scanner.nextInt();
+	                        if (nuevoDaño < 0) System.err.println("Error. El daño no puede ser negativo.");
+	                    } else {
+	                        System.err.println("Error. Ingrese un número.");
+	                        scanner.next();
+	                    }
+	                } while (nuevoDaño < 0);
+	                scanner.nextLine(); 
+	                hechizoActual.setDaño(nuevoDaño);
+	                System.out.println("¡Daño modificado con éxito!");
+	                break;
+	                
+	            case "3":
+	                System.out.println("\nSeleccione el NUEVO tipo para el hechizo (Se reescribirán sus atributos):");
+	                System.out.println("1. Fuego\n2. Tierra\n3. Planta\n4. Agua");
+	                System.out.print("> ");
+	                int tipoOpcion = 0;
+	                if (scanner.hasNextInt()) {
+	                    tipoOpcion = scanner.nextInt();
+	                } else {
+	                    scanner.next();
+	                }
+	                scanner.nextLine(); 
+	                
+	                String nombreActual = hechizoActual.getNombre();
+	                int dañoActual = hechizoActual.getDaño();
+	                Hechizo hechizoReemplazo = null;
+	                
+	                switch (tipoOpcion) {
+	                    case 1: 
+	                        System.out.println("Ingrese la duración de la quemadura:");
+	                        System.out.print("> ");
+	                        int duracion = scanner.nextInt();
+	                        hechizoReemplazo = new HechizoFuego(nombreActual, "Fuego", dañoActual, duracion);
+	                        break;
+	                    case 2: 
+	                        System.out.println("Ingrese la mejora de defensa:");
+	                        System.out.print("> ");
+	                        int defensa = scanner.nextInt();
+	                        hechizoReemplazo = new HechizoTierra(nombreActual, "Tierra", dañoActual, defensa);
+	                        break;
+	                    case 3: 
+	                        System.out.println("Ingrese la duración del Stun:");
+	                        System.out.print("> ");
+	                        int stun = scanner.nextInt();
+	                        System.out.println("Ingrese la cantidad de plantas:");
+	                        System.out.print("> ");
+	                        int cantPlantas = scanner.nextInt();
+	                        hechizoReemplazo = new HechizoPlanta(nombreActual, "Planta", dañoActual, stun, cantPlantas);
+	                        break;
+	                    case 4: 
+	                        System.out.println("Ingrese la cantidad de Heal:");
+	                        System.out.print("> ");
+	                        int heal = scanner.nextInt();
+	                        System.out.println("Ingrese la presión del agua:");
+	                        System.out.print("> ");
+	                        int presion = scanner.nextInt();
+	                        hechizoReemplazo = new HechizoAgua(nombreActual, "Agua", dañoActual, heal, presion);
+	                        break;
+	                    default:
+	                        System.err.println("Opción de tipo inválida. No se realizaron cambios.");
+	                        break;
+	                }
+	                
+	                if (hechizoReemplazo != null) {
+	                    sys.getListaHechizos().set(indice - 1, hechizoReemplazo);
+	                    hechizoActual = hechizoReemplazo; 
+	                    System.out.println("¡Tipo y atributos especiales modificados con éxito!");
+	                }
+	                scanner.nextLine(); 
+	                break;
+	                
+	            case "0":
+	                System.out.println("Saliendo de la modificación del hechizo...");
+	                break;
+	                
+	            default:
+	                System.err.println("Ingresa una opción válida.");
+	                break;
+	        }
+	    } while (!opcion.equals("0"));
+		
+	}
+	private static void agregarHechizo() {
+		Scanner scanner = new Scanner(System.in);
+	    System.out.println("=== AGREGAR NUEVO HECHIZO ===");
+	    
+	    System.out.println("Ingrese nombre del nuevo hechizo:");
+	    System.out.print("> ");
+	    String nombre = scanner.nextLine();
+	    
+	    int daño = -1;
+	    do {
+	        System.out.println("Ingrese el daño base del hechizo:");
+	        System.out.print("> ");
+	        if (scanner.hasNextInt()) {
+	            daño = scanner.nextInt();
+	            if (daño < 0) {
+	                System.err.println("Error. El daño no puede ser negativo.");
+	            }
+	        } else {
+	            System.err.println("Error. Ingrese un número válido.");
+	            scanner.next();
+	        }
+	    } while (daño < 0);
+	    
+	    
+	    int tipoOpcion = 0;
+	    do {
+	        System.out.println("\nSeleccione el tipo de Hechizo:");
+	        System.out.println("1. Fuego\n2. Tierra\n3. Planta\n4. Agua");
+	        System.out.print("> ");
+	        if (scanner.hasNextInt()) {
+	            tipoOpcion = scanner.nextInt();
+	            if (tipoOpcion <= 0 || tipoOpcion > 4) {
+	                System.err.println("Error. Seleccione una opción entre 1 y 4.");
+	            }
+	        } else {
+	            System.err.println("Error. Elija un NÚMERO.");
+	            scanner.next();
+	            tipoOpcion = -1;
+	        }
+	    } while (tipoOpcion <= 0 || tipoOpcion > 4);
+	    
+	    scanner.nextLine(); 
+	    
+	    switch (tipoOpcion) {
+	        case 1: 
+	            System.out.println("Ingrese la duración de la quemadura:");
+	            System.out.print("> ");
+	            int duracion = scanner.nextInt();
+	            
+	            Hechizo hFuego = new HechizoFuego(nombre, "Fuego", daño, duracion);
+	            sys.añadirHechizo(hFuego);
+	            break;
+	            
+	        case 2: 
+	            System.out.println("Ingrese la mejora de defensa:");
+	            System.out.print("> ");
+	            int defensa = scanner.nextInt();
+	            
+	            Hechizo hTierra = new HechizoTierra(nombre, "Tierra", daño, defensa);
+	            sys.añadirHechizo(hTierra);
+	            break;
+	            
+	        case 3: 
+	            System.out.println("Ingrese la duración del Stun:");
+	            System.out.print("> ");
+	            int stun = scanner.nextInt();
+	            System.out.println("Ingrese la cantidad de plantas:");
+	            System.out.print("> ");
+	            int cantPlantas = scanner.nextInt();
+	            
+	            Hechizo hPlanta = new HechizoPlanta(nombre, "Planta", daño, stun, cantPlantas);
+	            sys.añadirHechizo(hPlanta);
+	            break;
+	            
+	        case 4: 
+	            System.out.println("Ingrese la cantidad de Heal:");
+	            System.out.print("> ");
+	            int heal = scanner.nextInt();
+	            System.out.println("Ingrese la presión del agua:");
+	            System.out.print("> ");
+	            int presion = scanner.nextInt();
+	            
+	            Hechizo hAgua = new HechizoAgua(nombre, "Agua", daño, heal, presion);
+	            sys.añadirHechizo(hAgua);
+	            break;
+	    }
+	    
+	    scanner.nextLine(); 
+	    System.out.println("\n¡Hechizo '" + nombre + "' agregado exitosamente al sistema!");
+	}
+	
+	
 	private static void eliminarMago() {
 		Scanner scanner = new Scanner(System.in);
 	    System.out.println("=== ELIMINAR MAGO ===");

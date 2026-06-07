@@ -1,7 +1,7 @@
+nachocrack;alaverga|Origen Pulso|Tierra Viva|Ataque Arena|Mazazo|Hoja Mágica|Fuego Sagrado|Patada Ígnea|Envite Igneo|Latigazo
 Ferran;Salmuera|Envite Igneo|Disparo Lodo|Poder Pasado|Rueda Fuego|Hidroariete|Burbuja
 MartinNegro;Acua Aro|Tumba Rocas|Polen Somnífero|Escaldar|Disparo Lodo|Cascada|Pirotecnia
 MartinAyudanteHermoso;Disparo Lodo|Salmuera|Colmillo Igneo|Excavar|Calcinación
-nachocrack;Bucle Arena|Origen Pulso|Tierra Viva|Ataque Arena|Mazazo|Hoja Mágica|Fuego Sagrado|Patada Ígnea|Envite Igneo|Latigazo
 Estefania;Hoja Afilada|Burbuja|Acua Jet|Energibola|Fuego Sagrado|Agua Lodosa|Llamarada Azul
 Rabi;Latigazo|Absorber|Vórtice Ígneo|Avalancha|Rueda Fuego|Tormenta de Arena
 Sasa;Infierno|Martillazo|Hidroariete|Envite Igneo
@@ -12,8 +12,8 @@ Danini;Fuego Sagrado|Pedrada|Envite Igneo|Hierba Lazo|Surf
 Mul;Gigadrenado|Rayo Burbuja|Danza Lluvia|Pistola Agua
 Maxi;Explosión Ígnea|Envite Igneo|Agua Lodosa
 Pruno;Sofoco|Disparo Lodo|Pirotecnia|Vórtice Ígneo
-Churrasquita;Bucle Arena|Infierno|Silvato|Hoja Mágica|Colmillo Igneo
+ASD;Escaldar
 Branco;Arraigo|Silvato|Danza Lluvia
 Papulini;Fuego Sagrado|Absorber|Infierno
+Churrasquita;Bucle Arena|Infierno|Silvato|Hoja Mágica|Colmillo Igneo
 asd;Bucle Arena
-ASD;Escaldar
